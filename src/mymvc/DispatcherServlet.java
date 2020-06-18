@@ -246,8 +246,13 @@ public class  DispatcherServlet extends HttpServlet {
                         for(Field field : fields){
                             field.setAccessible(true);
                             Class fieldType = field.getType();
+                            //如果属性不是如下的类型 我们就不做处理了（即对象、集合等复杂类型）
+                            if(fieldType!=String.class && fieldType!=Integer.class && fieldType!=int.class) continue;
                             Constructor fieldContructor = fieldType.getConstructor(String.class);
-                            field.set(paramObj,fieldContructor.newInstance(request.getParameter(field.getName())));
+                            String value = request.getParameter(field.getName());
+                            //如果获取到的参数为空或者是个空串 我们在newInstance()的时候会出错 所以也需要跳过
+                            if(value==null || "".equals(value))continue;
+                            field.set(paramObj,fieldContructor.newInstance(value));
                         }
                         finalParamValue[i] = paramObj;
                         //System.out.println("对象类型参数处理");

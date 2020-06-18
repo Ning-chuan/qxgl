@@ -31,4 +31,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser(){
         return userDao.selectAllUser();
     }
+
+    public void addUser(User user){
+        userDao.userAdd(user);
+    }
+
+    @Override
+    public void userDelete(Integer uno) {
+        userDao.userDelete(uno);
+    }
+
+    public User findUserById(Integer uno){
+        return userDao.selectUserById(uno);
+    }
 }

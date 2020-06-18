@@ -3,10 +3,7 @@ package com.action;
 import com.domain.User;
 import com.service.UserService;
 import com.service.impl.UserServiceImpl;
-import mymvc.ModelAndView;
-import mymvc.Param;
-import mymvc.RequestMapping;
-import mymvc.SessionAttributes;
+import mymvc.*;
 
 import java.util.List;
 
@@ -41,5 +38,28 @@ public class UserAction {
         return mv;
     }
 
+    @RequestMapping("addUser.do")
+    @ResponseBody
+    public String addUser(User user){
+        service.addUser(user);
+        return "添加成功";
+    }
+
+    @RequestMapping("deleteUser.do")
+    @ResponseBody
+    public String deleteUser(@Param("uno")Integer uno){
+        System.out.println(uno);
+        service.userDelete(uno);
+        return "删除成功";
+    }
+
+    @RequestMapping("editUser.do")
+    public ModelAndView editUser(@Param("uno")Integer uno){
+        User user = service.findUserById(uno);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("userEdit.jsp");
+        mv.addAttribute("user",user);
+        return mv;
+    }
 
 }
