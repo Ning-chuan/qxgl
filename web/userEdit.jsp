@@ -56,10 +56,9 @@
         <div id="userEditBox">
             <h2 align="center">请填写需要修改项</h2>
             <form id="userEditForm" action="updateUser.do" method="post">
+                <input type="hidden" name="uno" value="${user.uno}">
                 <ul>
                     <li>用户名称：<input type="text" name="uname" required value="${user.uname}"></li>
-                    <li>用户密码：<input type="password" id="upass" name="upass" value="${user.upass}" required></li>
-                    <li>确认密码：<input type="password" id="repass" required></li>
                     <li>真实名字：<input type="text" name="truename" value="${user.truename}" required></li>
                     <li>用户年龄：<input type="number" name="age" value="${user.age}" required></li>
                     <li>用户性别：<input type="text" name="sex" value="${user.sex}" list="sexList">
