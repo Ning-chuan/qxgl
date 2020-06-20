@@ -13,4 +13,6 @@ public interface UserService {
     void userDelete(Integer uno);
 
     User findUserById(Integer uno);
+
+    void userUpdate(User user);
 }

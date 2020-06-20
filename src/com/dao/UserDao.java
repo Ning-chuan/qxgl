@@ -4,6 +4,7 @@ import com.domain.User;
 import orm.annotation.Delete;
 import orm.annotation.Insert;
 import orm.annotation.Select;
+import orm.annotation.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,7 @@ public interface UserDao {
 
     @Select("SELECT * FROM T_USER WHERE UNO=#{uno}")
     User selectUserById(Integer uno);
+
+    @Update("UPDATE T_USER SET UNAME=#{uname},TRUENAME=#{truename},AGE=#{age},SEX=#{sex},PHONE=#{phone} WHERE(UNO=#{uno})")
+    void userUpdate(User user);
 }

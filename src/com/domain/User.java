@@ -18,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer uno, String uname, String upass, String truename, Integer age, String sex, String phone) {
+    public User(Integer uno, String uname, String upass, String truename, Integer age, String sex, String phone,String yl1,String yl2) {
         this.uno = uno;
         this.uname = uname;
         this.upass = upass;

@@ -22,5 +22,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.34" level="application_server_libraries" />
     <orderEntry type="library" name="fastjson-1.2.9" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
