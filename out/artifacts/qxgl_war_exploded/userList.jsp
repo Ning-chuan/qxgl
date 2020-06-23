@@ -62,6 +62,22 @@
                     }
                 }
 
+                //点击数据行时勾选复选框
+                for (var i = 0;i < tbodyRows.length;i++){
+                    var row = tbodyRows[i];
+                    //点击数据行时勾选复选框
+                    row.onclick = function () {
+                        var checkBoxEle = this.getElementsByTagName('input')[0];
+                        checkBoxEle.checked = ! checkBoxEle.checked;
+
+                    }
+                    //取消勾选框的事件冒泡 （避免bug）
+                    var checkBoxEle = row.getElementsByTagName('input')[0];
+                    checkBoxEle.onclick = function (event) {
+                        var e = window.event || event;
+                        e.stopPropagation();
+                    }
+                }
             }
 
             //定义一个是否确认删除的函数  点击删除连接时会调用此函数

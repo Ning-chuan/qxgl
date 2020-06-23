@@ -15,11 +15,15 @@
                 font-size: 16px;
                 margin: 10px 60px;
             }
+            #templateDown{
+                margin-left: 170px;
+            }
         </style>
     </head>
     <body>
         <div id="importBox">
             <h2 align="center">请选择要导入的文件</h2>
+            <span id="templateDown"><a href="userTemplateDownload.do">模板下载</a></span>
             <form action="importUsers.do" method="post" enctype="multipart/form-data">
                 <input type="file" required name="excel">
                 <input type="submit" value="上传">

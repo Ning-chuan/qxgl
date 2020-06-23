@@ -10,9 +10,12 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.poi.ss.usermodel.*;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 @SessionAttributes("loginUser")
@@ -137,5 +140,24 @@ public class UserAction {
         service.userUpdate(user);
         //修改成功后转到用户列表页面展示修改后的信息
         return "userList.do";
+    }
+
+
+    @RequestMapping("userTemplateDownload.do")
+    @ResponseBody
+    public void userTemplateDownload(HttpServletResponse response) throws IOException {
+        //获取输入流
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("files/userTemplate.xlsx");
+        //获取输出流
+        OutputStream os = response.getOutputStream();
+        //告知浏览器接收文件时弹出下载框 而不是直接在浏览器显示
+        response.setHeader("content-Disposition","attachment;filename=userTemplate.xlsx");
+        //读取过程：
+        byte[] car = new byte[1024];
+        int length;
+        while((length = is.read(car))!= -1){
+            os.write(car,0,length);
+        }
+        is.close();
     }
 }
