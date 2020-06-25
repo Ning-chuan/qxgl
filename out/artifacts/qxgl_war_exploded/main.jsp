@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html>
 <head>
     <title>主页</title>
@@ -64,7 +65,7 @@
                 <ul>
                     <li><span><a href="userList.do" target="right">用户管理</a></span></li>
                     <li><span><a href="roleList.do" target="right">角色管理</a></span></li>
-                    <li><span>菜单管理</span></li>
+                    <li><span><a href="menuList.jsp" target="right">菜单管理</a></span></li>
                 </ul>
             </li>
             <li>

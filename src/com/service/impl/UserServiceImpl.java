@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
     //单列模式
     private UserServiceImpl(){}
-    private static UserServiceImpl userService = new UserServiceImpl();
+    private static final UserServiceImpl userService = new UserServiceImpl();
     public static UserServiceImpl getUserService(){
         return userService;
     }

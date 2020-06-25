@@ -6,7 +6,7 @@ public class Menu {
     private Integer mno;
     private String mname;
     private String mhref;
-    private String target;
+    private String mtarget;
     private Integer pno;//父级菜单编号
     private String yl1;
     private String yl2;
@@ -18,11 +18,11 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(Integer mno, String mname, String mhref, String target) {
+    public Menu(Integer mno, String mname, String mhref, String mtarget) {
         this.mno = mno;
         this.mname = mname;
         this.mhref = mhref;
-        this.target = target;
+        this.mtarget = mtarget;
     }
 
     public Integer getMno() {
@@ -49,12 +49,12 @@ public class Menu {
         this.mhref = mhref;
     }
 
-    public String getTarget() {
-        return target;
+    public String getMtarget() {
+        return mtarget;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    public void setMtarget(String mtarget) {
+        this.mtarget = mtarget;
     }
 
     public Integer getPno() {
@@ -63,6 +63,22 @@ public class Menu {
 
     public void setPno(Integer pno) {
         this.pno = pno;
+    }
+
+    public String getYl1() {
+        return yl1;
+    }
+
+    public void setYl1(String yl1) {
+        this.yl1 = yl1;
+    }
+
+    public String getYl2() {
+        return yl2;
+    }
+
+    public void setYl2(String yl2) {
+        this.yl2 = yl2;
     }
 
     public Menu getParent() {

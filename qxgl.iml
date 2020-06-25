@@ -23,5 +23,6 @@
     <orderEntry type="library" name="fastjson-1.2.9" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jquery-3.5.1.min" level="project" />
   </component>
 </module>
