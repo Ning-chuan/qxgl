@@ -8,6 +8,8 @@ public class Menu {
     private String mhref;
     private String target;
     private Integer pno;//父级菜单编号
+    private String yl1;
+    private String yl2;
 
 
     private Menu parent;//父级菜单对象

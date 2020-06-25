@@ -15,7 +15,6 @@ public class RoleAction {
 
     @RequestMapping("roleList.do")
     public ModelAndView roleList(@Param("page") Integer page,@Param("rows") Integer rows,@Param("rno")Integer rno, @Param("rname") String rname, @Param("description") String description){
-        System.out.println("进入roleList方法");
         if(page == null){
             page = 1;//默认显示第一页
         }
@@ -26,11 +25,14 @@ public class RoleAction {
         Integer totalRecord = roleService.getTotalRecord(rno, rname, description);//获取记录总数 用于计算最大页码
         int maxPage = totalRecord%rows==0 ? totalRecord/rows : totalRecord/rows+1;
         ModelAndView mv = new ModelAndView();
+        mv.setViewName("roleList.jsp");
         mv.addAttribute("roleList",roleList);
         mv.addAttribute("page",page);
         mv.addAttribute("rows",rows);
         mv.addAttribute("maxPage",maxPage);
-        mv.setViewName("roleList.jsp");
+        mv.addAttribute("rno",rno);
+        mv.addAttribute("rname",rname);
+        mv.addAttribute("description",description);
         return mv;
     }
 }
