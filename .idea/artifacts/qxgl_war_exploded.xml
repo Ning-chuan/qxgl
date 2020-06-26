@@ -6,6 +6,12 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="qxgl" />
+          <element id="library" level="project" name="jquery-3.5.1.min" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.48" />
+          <element id="library" level="project" name="fastjson-1.2.9" />
         </element>
       </element>
     </root>
