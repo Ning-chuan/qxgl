@@ -22,4 +22,34 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> getMenuList() {
         return dao.menuList();
     }
+
+    @Override
+    public int addMenu(Menu menu) {
+        dao.addMenu(menu);
+        return dao.findIdByMname(menu.getMname());
+    }
+
+    @Override
+    public Menu findOneMenuByMno(Integer mno) {
+        return dao.selectOneMenuByMno(mno);
+    }
+
+    public void updateMenu(Menu menu) {
+        dao.updateOneMenu(menu);
+    }
+
+    @Override
+    public void deleteMenuByMno(Integer mno) {
+        List<Menu> menuList = getMenuList();
+        deleteMenu(mno,menuList);
+    }
+    private void deleteMenu(Integer mno,List<Menu> menuList){
+        for (int i = 0; i < menuList.size(); i++) {
+            Menu menu = menuList.get(i);
+            if(menu.getPno() == mno){
+                deleteMenu(menu.getMno(),menuList);
+            }
+        }
+        dao.deleteOneMenu(mno);
+    }
 }
