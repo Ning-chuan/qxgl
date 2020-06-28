@@ -211,6 +211,7 @@
                 var span = $('#active');
                 if(span.length == 0){
                     alert('请选择要删除的菜单');
+                    return;
                 }
                 var res = confirm('确认要删除吗？')
                 if(!res){
