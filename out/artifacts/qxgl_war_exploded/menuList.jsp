@@ -29,6 +29,16 @@
                 color: whitesmoke;
                 background-color: steelblue;
             }
+            ul a{
+                padding: 8px;
+                margin-right: 5px;
+            }
+            ul a.open{
+                background: url('images/open.png') no-repeat 0 12px;
+            }
+            ul a.close{
+                background: url('images/close.png') no-repeat 0 12px;
+            }
         </style>
         <script src="js/jquery-3.5.1.min.js"></script>
         <script>
@@ -86,6 +96,30 @@
 
                         //添加双击修改事件
                         addMenuDoubleClick($('span'));
+
+                        //增加展开收起图标
+                        $('ul span').before('<a>');
+                        //i是索引 e是每一个元素
+                        $('li a').each(function (i,e) {
+                            var ul = $(e).parent().children('ul');
+                            if(ul.children().length > 0){
+                                //有子菜单 添加图标 默认是展开
+                                $(e).addClass('open');
+                            }
+                        })
+                        $('li a').click(function () {
+                            var flag = $(this).attr('class');
+                            //alert(flag);
+                            if(flag == 'open'){
+                                $(this).removeClass('open');
+                                $(this).addClass('close');
+                                $(this).next().next().toggle('500');
+                            }else if(flag == 'close'){
+                                $(this).removeClass('close');
+                                $(this).addClass('open');
+                                $(this).next().next().toggle('500');
+                            }
+                        });
                     },
                     'json'
                 );
