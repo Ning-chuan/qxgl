@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.domain.Role;
 import com.domain.User;
 import orm.annotation.Delete;
 import orm.annotation.Insert;
@@ -28,4 +29,7 @@ public interface UserDao {
 
     @Update("UPDATE T_USER SET UNAME=#{uname},TRUENAME=#{truename},AGE=#{age},SEX=#{sex},PHONE=#{phone} WHERE(UNO=#{uno})")
     void userUpdate(User user);
+
+    @Select("SELECT * FROM T_ROLE WHERE RNO NOT IN (SELECT RNO FROM T_USER_ROLE WHERE UNO=#{uno})")
+    List<Role> selectUnlinkedRoles(int uno);
 }

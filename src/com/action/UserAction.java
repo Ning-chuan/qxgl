@@ -1,5 +1,6 @@
 package com.action;
 
+import com.domain.Role;
 import com.domain.User;
 import com.service.UserService;
 import com.service.impl.UserServiceImpl;
@@ -159,5 +160,11 @@ public class UserAction {
             os.write(car,0,length);
         }
         is.close();
+    }
+
+    @RequestMapping("findUnlinkedRoles.do")
+    public List<Role> findUnlinkedRoles(@Param("uno") int uno){
+        System.out.println("进入findUnlinkedRoles");
+        return service.findUnlinkedRolesByUno(uno);
     }
 }

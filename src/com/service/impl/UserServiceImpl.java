@@ -1,6 +1,7 @@
 package com.service.impl;
 
 import com.dao.UserDao;
+import com.domain.Role;
 import com.domain.User;
 import com.service.UserService;
 import orm.SqlSession;
@@ -47,5 +48,10 @@ public class UserServiceImpl implements UserService {
 
     public void userUpdate(User user){
         userDao.userUpdate(user);
+    }
+
+    @Override
+    public List<Role> findUnlinkedRolesByUno(int uno) {
+        return userDao.selectUnlinkedRoles(uno);
     }
 }
