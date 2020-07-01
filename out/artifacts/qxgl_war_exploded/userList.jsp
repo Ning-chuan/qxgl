@@ -147,7 +147,7 @@
                         <td>
                             <a href="javascript:confirmDelete(${user.uno})">删除</a>|
                             <a href="editUser.do?uno=${user.uno}">编辑</a>|
-                            <a href="linkRoles.jsp?uno=${user.uno}&truename=${user.truename}">分配角色</a>
+                            <a href="setRoles.jsp?uno=${user.uno}&truename=${user.truename}">分配角色</a>
                         </td>
                     </tr>
                 </c:forEach>

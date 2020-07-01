@@ -164,7 +164,18 @@ public class UserAction {
 
     @RequestMapping("findUnlinkedRoles.do")
     public List<Role> findUnlinkedRoles(@Param("uno") int uno){
-        System.out.println("进入findUnlinkedRoles");
         return service.findUnlinkedRolesByUno(uno);
+    }
+
+    @RequestMapping("findLinkedRoles.do")
+    public List<Role> findLinkedRoles(@Param("uno") int uno){
+        return service.findLinkedRolesByUno(uno);
+    }
+
+    @RequestMapping("setRoles.do")
+    @ResponseBody
+    public void setRoles(@Param("uno")int uno,@Param("rnos")String rnos){
+        //System.out.println(rnos);
+        service.setRolesToUser(uno,rnos);
     }
 }

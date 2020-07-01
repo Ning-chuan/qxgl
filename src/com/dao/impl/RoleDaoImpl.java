@@ -28,8 +28,8 @@ public class RoleDaoImpl implements RoleDao {
         Integer start = (Integer) params.get("start");
         Integer length = (Integer) params.get("length");
         sql.append(" LIMIT #{start},#{length}");
-        System.out.println(sql.toString());
-        System.out.println("中国");
+//        System.out.println(sql.toString());
+//        System.out.println("中国");
 
         SqlSession sqlSession = new SqlSession();
         List<Role> roleList = sqlSession.selectList(sql.toString(), params,Role.class);

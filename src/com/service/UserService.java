@@ -18,4 +18,8 @@ public interface UserService {
     void userUpdate(User user);
 
     List<Role> findUnlinkedRolesByUno(int uno);
+
+    List<Role> findLinkedRolesByUno(int uno);
+
+    void setRolesToUser(int uno, String rnos);
 }

@@ -54,4 +54,26 @@ public class UserServiceImpl implements UserService {
     public List<Role> findUnlinkedRolesByUno(int uno) {
         return userDao.selectUnlinkedRoles(uno);
     }
+
+    @Override
+    public List<Role> findLinkedRolesByUno(int uno) {
+        return userDao.selectLinkedRoles(uno);
+    }
+
+    @Override
+    public void setRolesToUser(int uno, String rnos) {
+        //删除之前的角色
+        userDao.deleteAllRoles(uno);
+        //添加现在的角色
+        if(rnos == null || "".equals(rnos)){
+            return;
+        }
+        String[] rnoArray = rnos.split(",");
+        for(String rno : rnoArray){
+            Map<String, Integer> param = new HashMap<>();
+            param.put("uno", uno);
+            param.put("rno", Integer.parseInt(rno));
+            userDao.addUserRole(param);
+        }
+    }
 }
