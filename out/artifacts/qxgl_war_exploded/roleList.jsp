@@ -171,7 +171,7 @@
                             <td>${role.rno}</td>
                             <td>${role.rname}</td>
                             <td>${role.description}</td>
-                            <td><a href="">删除</a> | <a href="">编辑</a></td>
+                            <td><a href="">删除</a> | <a href="">编辑</a> | <a href="setMenus.jsp?rno=${role.rno}&rname=${role.rname}">分配菜单</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

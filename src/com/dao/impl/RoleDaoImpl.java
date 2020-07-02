@@ -4,10 +4,14 @@ import com.dao.RoleDao;
 import com.domain.Role;
 import orm.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class RoleDaoImpl implements RoleDao {
+
+    private SqlSession sqlSession = new SqlSession();
+
     @Override
     public List<Role> selectRoles(Map<String,Object> params) {
         StringBuilder sql = new StringBuilder("SELECT * FROM T_ROLE WHERE 1=1 ");
@@ -31,7 +35,6 @@ public class RoleDaoImpl implements RoleDao {
 //        System.out.println(sql.toString());
 //        System.out.println("中国");
 
-        SqlSession sqlSession = new SqlSession();
         List<Role> roleList = sqlSession.selectList(sql.toString(), params,Role.class);
         return roleList;
     }
@@ -52,8 +55,25 @@ public class RoleDaoImpl implements RoleDao {
             //前后模糊查询
             sql.append(" AND DESCRIPTION LIKE CONCAT('%',CONCAT(#{description},'%'))");
         }
-        SqlSession sqlSession = new SqlSession();
         Integer totalRecord = sqlSession.selectOne(sql.toString(), params,Integer.class);
         return totalRecord;
+    }
+
+    @Override
+    public void deleteAllMenusByRno(int rno) {
+        String sql = "DELETE FROM T_ROLE_MENU WHERE RNO=#{rno}";
+        sqlSession.delete(sql,rno);
+    }
+
+    public void addMenuToRole(int rno, int mno) {
+        String sql = "INSERT INTO T_ROLE_MENU VALUES(#{rno},#{mno})";
+        Map<String, Integer> param = new HashMap<>();
+        param.put("rno", rno);
+        param.put("mno", mno);
+        sqlSession.insert(sql,param);
+    }
+
+    public List<Integer> findMenusByRno(int rno) {
+        return sqlSession.selectList("SELECT MNO FROM T_ROLE_MENU WHERE RNO=#{rno}", rno, Integer.class);
     }
 }

@@ -5,6 +5,7 @@ import com.service.impl.RoleServiceImpl;
 import mymvc.ModelAndView;
 import mymvc.Param;
 import mymvc.RequestMapping;
+import mymvc.ResponseBody;
 import orm.SqlSession;
 
 import java.util.List;
@@ -34,5 +35,17 @@ public class RoleAction {
         mv.addAttribute("rname",rname);
         mv.addAttribute("description",description);
         return mv;
+    }
+
+    @RequestMapping("setMenus.do")
+    @ResponseBody
+    public void setMenus(@Param("rno") int rno,@Param("mnos")String mnos){
+        roleService.setMenusToRole(rno,mnos);
+    }
+
+    @RequestMapping("ownMenus.do")
+    @ResponseBody
+    public List<Integer> ownMenus(@Param("rno") int rno){
+        return roleService.getOwnMenusByRno(rno);
     }
 }

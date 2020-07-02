@@ -8,4 +8,8 @@ public interface RoleService {
     List<Role> getRoleList(Integer page,Integer rows,Integer rno,String rname,String description);
 
     Integer getTotalRecord(Integer rno,String rname,String description);
+
+    void setMenusToRole(int rno, String mnos);
+
+    List<Integer> getOwnMenusByRno(int rno);
 }

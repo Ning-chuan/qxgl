@@ -37,4 +37,19 @@ public class RoleServiceImpl implements RoleService {
         return roleDao.totalRecord(params);
     }
 
+    public void setMenusToRole(int rno, String mnos) {
+        //1.删该角色之前拥有的菜单
+        roleDao.deleteAllMenusByRno(rno);
+        //2.给该角色添加本次传递的菜单
+        if(mnos == null || "".equals(mnos)) return;//说明此次没有选中任何菜单
+        String[] mnoArray = mnos.split(",");
+        for(String mno : mnoArray){
+            roleDao.addMenuToRole(rno,Integer.parseInt(mno));
+        }
+    }
+
+    @Override
+    public List<Integer> getOwnMenusByRno(int rno) {
+        return roleDao.findMenusByRno(rno);
+    }
 }
