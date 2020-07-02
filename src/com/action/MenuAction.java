@@ -39,4 +39,9 @@ public class MenuAction {
     public void deleteMenu(@Param("mno")Integer mno){
         service.deleteMenuByMno(mno);
     }
+
+    @RequestMapping("userMenus.do")
+    public List<Menu> userMenus(@Param("uno") int uno){
+        return service.getUserMenusByUno(uno);
+    }
 }

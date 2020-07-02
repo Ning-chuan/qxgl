@@ -28,4 +28,7 @@ public interface MenuDao {
 
     @Delete("DELETE FROM T_MENU WHERE MNO=#{mno}")
     void deleteOneMenu(Integer mno);
+
+    @Select("SELECT * FROM T_MENU WHERE MNO IN (SELECT MNO FROM T_ROLE_MENU WHERE RNO IN (SELECT RNO FROM T_USER_ROLE WHERE UNO=#{uno}))")
+    List<Menu> findUserMenusByUno(Integer uno);
 }

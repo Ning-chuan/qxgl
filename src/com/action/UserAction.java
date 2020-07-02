@@ -1,8 +1,11 @@
 package com.action;
 
+import com.domain.Menu;
 import com.domain.Role;
 import com.domain.User;
+import com.service.MenuService;
 import com.service.UserService;
+import com.service.impl.MenuServiceImpl;
 import com.service.impl.UserServiceImpl;
 import mymvc.*;
 import org.apache.commons.fileupload.FileItem;
@@ -19,10 +22,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
-@SessionAttributes("loginUser")
+@SessionAttributes({"loginUser","menuList","userMenus"})
 public class UserAction {
 
     private UserService service = UserServiceImpl.getUserService();
+    private MenuService menuService = MenuServiceImpl.getMenuService();
 
     @RequestMapping("login.do")
     public ModelAndView login(@Param("uname")String uname, @Param("upass")String upass){
@@ -37,6 +41,11 @@ public class UserAction {
             //登陆成功，返回主页面
             mv.setViewName("main.jsp");
             mv.addAttribute("loginUser",user);
+
+            List<Menu> menuList = menuService.getMenuList();
+            List<Menu> userMenus = menuService.getUserMenusByUno(user.getUno());
+            mv.addAttribute("menuList",menuList);
+            mv.addAttribute("userMenus",userMenus);
         }
         return mv;
     }

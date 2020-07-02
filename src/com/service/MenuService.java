@@ -14,4 +14,6 @@ public interface MenuService {
     void updateMenu(Menu menu);
 
     void deleteMenuByMno(Integer mno);
+
+    List<Menu> getUserMenusByUno(int uno);
 }

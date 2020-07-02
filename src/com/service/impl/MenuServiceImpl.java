@@ -38,6 +38,7 @@ public class MenuServiceImpl implements MenuService {
         dao.updateOneMenu(menu);
     }
 
+
     @Override
     public void deleteMenuByMno(Integer mno) {
         List<Menu> menuList = getMenuList();
@@ -52,4 +53,11 @@ public class MenuServiceImpl implements MenuService {
         }
         dao.deleteOneMenu(mno);
     }
+
+    @Override
+    public List<Menu> getUserMenusByUno(int uno) {
+        return dao.findUserMenusByUno(uno);
+    }
+
+
 }

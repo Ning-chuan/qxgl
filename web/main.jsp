@@ -31,19 +31,19 @@
             width:80%;
             float:left;
         }
-        #menuBox{
+        #left>ul{
             margin-top: 10%;
             margin-left: 10%;
         }
-        #menuBox li{
+        #left li{
             list-style: none;
             margin: 2%;
         }
-        #menuBox li span{
+        #left li span{
             cursor: pointer;
 
         }
-        #menuBox li ul>li>span:hover{
+        #left li span:hover{
             background-color: rgba(0,140,140,0.5);
         }
         #loginMsg{
@@ -53,12 +53,41 @@
             font-size: large;
         }
     </style>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function () {
+            $.post('userMenus.do',{'uno':${sessionScope.loginUser.uno}},function (menus) {
+                function showOneLevelMenus(pno,$position) {
+                    var ul = $('<ul>');
+                    $position.append(ul);
+                    for (var i = 0; i < menus.length; i++) {
+                        var menu = menus[i];
+                        if(menu.pno == pno){
+                            //找到一个子菜单
+                            var li = $('<li>');
+                            ul.append(li);
+                            if(menu.mhref){
+                                //该菜单有链接 需要添加a标签
+                                li.append('<span><a href="'+menu.mhref+'" target="'+menu.mtarget+'">'+menu.mname+'</a></span>')
+                            }else{
+                                li.append('<span>'+menu.mname+'</span>')
+                            }
+                            //至此当前子菜单自身展示完毕 递归展示下一级子菜单
+                            showOneLevelMenus(menu.mno,li)
+                        }
+                    }
+                }
+                showOneLevelMenus(-1,$('#left'))
+            },'json');
+        });
+    </script>
 </head>
 <body>
     <div id="top">
         <span id="loginMsg">欢迎【${sessionScope.loginUser.truename}】登录</span>
     </div>
     <div id="left">
+        <!--
         <ul id="menuBox">
             <li>
                 <span>权限管理</span>
@@ -84,6 +113,7 @@
                 </ul>
             </li>
         </ul>
+        -->
     </div>
     <div id="right">
         <iframe name="right" width="100%" height="100%" frameborder="0"></iframe>
